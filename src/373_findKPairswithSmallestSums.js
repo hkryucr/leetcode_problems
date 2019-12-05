@@ -32,41 +32,84 @@ Explanation: All possible pairs are returned from the sequence: [1,3],[2,3]
 
 const kSmallestPairs = (nums1, nums2, k) => {
     if (nums1.length == 0 || nums2.length == 0) return []
-
-    // method
-    // [i1, i2, i3] // [j1, j2, j3];
-    // Find the smallest pairs
-    // i1 j1 first => add 
     
-    // create sum variable.
-    let sum, i, j;
-    i = 0;
-    j = 0;
-    let resArr = [];
-    if (k < nums1.length * nums2.length){
-        k == nums1.length * nums2.length
+    this.maxHeap = [];
+    
+    this.insert = (arr) => {
+        this.maxHeap.push(arr);
+        this.bubbleUp();
     }
-    // while    
-    while(k > 0){  
-        sum = nums1[i] + nums2[j];
-        resArr.push([nums1[i], nums2[j]])            
-        k--;
+    
+    this.bubbleUp = () =>{
+        let idx = this.maxHeap.length-1;
+        const element = this.maxHeap[idx];
+        
+        while(true && idx !== 0){
+            let parentIdx = Math.floor((idx - 1) / 2);
+            let parentEl = this.maxHeap[parentIdx];
 
-        // i1 j2 / i2 j1 
-        if (nums1[i+1] != undefined && nums1[i+1] <= nums2[j+1]){
-            i++;
-        } else if (nums2[j+1] != undefined){
-            j++;
+            if(element[0]+element[1] < parentEl[0] + parentEl[1]){
+                [this.maxHeap[parentIdx], this.maxHeap[idx]] = [element, parentEl];
+                idx = parentIdx;
+            } else {
+                break;
+            }
         }
     }
-    return resArr;    
+    
+    this.remove = () => {
+        const min = this.maxHeap[0];
+        const end = this.maxHeap.pop();
+        if(this.maxHeap.length > 0){
+            this.maxHeap[0] = end;
+            this.sinkDown();
+        }   
+        return min;
+    }
+    
+    this.sinkDown = () => {
+        let idx = 0;
+        const length = this.maxHeap.length;
+        const element = this.maxHeap[0];
+
+        while(true){
+            let leftChildInd = 2 * idx + 1; 
+            let rightChildInd = 2 * idx + 2; 
+            let leftChild, rightChild;
+            let swap = null;
+
+            if (leftChildInd < length){
+                leftChild = this.maxHeap[leftChildInd];
+                if (leftChild[0]+leftChild[1] < element[0]+element[1]){
+                    swap = leftChildInd
+                }
+            } 
+            if (rightChildInd < length){
+                rightChild = this.maxHeap[rightChildInd]
+                if((swap === null && rightChild[1]+rightChild[0] < element[0]+element[1]) || (swap !== null && rightChild[1]+rightChild[0] < leftChild[0]+leftChild[1])){
+                    swap = rightChildInd;
+                }
+            }
+            if (swap === null){break};
+            this.maxHeap[idx] = this.maxHeap[swap];
+            this.maxHeap[swap] = element;
+            idx = swap;
+        }
+    }
+    
+    let result = []
+    
+    for(let i = 0; i < Math.min(nums1.length, k); i++){
+        for (let j = 0; j < Math.min(nums2.length, k); j++){
+            this.insert([nums1[i], nums2[j]]);
+        }
+    }
+    
+    while (result.length < k){
+        let el = this.remove()
+        if (el === undefined) break;
+        result.push(el);
+    }
+    
+    return result;
 };
-
-console.log(kSmallestPairs([1,7,11], [2,4,6], 3));
-console.log(kSmallestPairs([-1,0,1], [-3,-2,-1], 5));
-console.log(kSmallestPairs([-1,0,1], [-3,-2,-1], 1));
-console.log(kSmallestPairs([0,0,0], [0,0,0], 4));
-
-// clarify space and time complexity 
-// edge cases
-// 
