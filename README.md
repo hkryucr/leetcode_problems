@@ -31,7 +31,10 @@ bundle.js.map
 
 - create a package.json file by running 'npm init --yes' and create frontend folder including  actions, reducers, store, util, and components folders
 
-- npm install --save webpack webpack-cli react react-dom react-router-dom redux react-redux @babel/core @babel/preset-react @babel/preset-env babel-loader
+- install frontend frameworks and libraries
+```
+npm install --save webpack webpack-cli react react-dom react-router-dom redux react-redux @babel/core @babel/preset-react @babel/preset-env babel-loader
+```
 
 - create 'webpack.config.js' file and setup the entrypoint, output path, and babel transpilation, and include devtool: 'source-map'
 ```
