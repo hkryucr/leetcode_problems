@@ -7,12 +7,12 @@ rails _5.2.3_ new my_project_name -G --database=postgresql --skip-turbolinks
 
 - Update Gemfile
 ```
-better_errors
-binding_of_caller
-pry-rails
-annotate
-bcrypt
-jquery-rails 
+gem 'better_errors'
+gem 'binding_of_caller'
+gem 'pry-rails'
+gem 'annotate'
+gem 'bcrypt'
+gem 'jquery-rails'
 ``` 
 
 - run 'bundle install'
