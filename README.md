@@ -14,6 +14,7 @@ annotate
 bcrypt
 jquery-rails 
 ``` 
+
 - run 'bundle install'
 
 - update application.js file
@@ -66,6 +67,32 @@ module.exports = {
     extensions: [".js", ".jsx", "*"]
   }
 };
+```
 
+- set up your entry file (entry_file_name.jsx that correspondes to the entry file in webpack.config.js)
+```
+import React from "react";
+import ReactDOM from "react-dom";
+
+document.addEventListener("DOMContentLoaded", () => {
+  const root = document.getElementById("root");
+  ReactDOM.render(<h1>Welcome to BenchBnB</h1>, root);
+});
 ```
  
+## Rails Backend
+- set up StaticPagesController with a root view containing 
+```
+rails g controller StaticPages
+```
+- inside /app/views/static_pages, create root.html.erb and make a root div
+```
+<div id="root"></miv>
+```
+
+- update routes.rb file with root to static_pages#root
+```
+root to: 'static_pages#root'
+```
+
+# Auth Backend
