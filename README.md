@@ -1,2 +1,2 @@
-# leetcode_problems
-Leetcode problems and solutions
+# Fullstack with Rails, React, and Redux
+
