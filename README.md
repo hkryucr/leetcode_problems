@@ -37,7 +37,7 @@ bundle.js.map
 npm install --save webpack webpack-cli react react-dom react-router-dom redux react-redux @babel/core @babel/preset-react @babel/preset-env babel-loader
 ```
 
-- create 'webpack.config.js' file and setup the entrypoint, output path, and babel transpilation, and include devtool: 'source-map'
+- create 'webpack.config.js' file and set up the entrypoint, output path, and babel transpilation, set up the absolute paths, and include devtool: 'source-map'
 ```
 const path = require("path");
 
@@ -64,7 +64,14 @@ module.exports = {
   },
   devtool: "source-map",
   resolve: {
-    extensions: [".js", ".jsx", "*"]
+    extensions: [".js", ".jsx", "*"],
+    alias: {
+      components: path.resolve(__dirname, "frontend/components"),
+      actions: path.resolve(__dirname, "frontend/actions"),
+      store: path.resolve(__dirname, "frontend/store"),
+      util: path.resolve(__dirname, "frontend/util"),
+      reducers: path.resolve(__dirname, "frontend/reducers")
+    }
   }
 };
 ```
