@@ -36,6 +36,10 @@ bundle.js.map
 ```
 npm install --save webpack webpack-cli react react-dom react-router-dom redux react-redux @babel/core @babel/preset-react @babel/preset-env babel-loader lodash redux-logger redux-thunk
 ```
+- optionally, if you want to use css-loader, install as follows, whic enables to use `import './another-stylesheet.css'`
+```
+npm install --save-dev css-loader
+```
 
 - create 'webpack.config.js' file and set up the entrypoint, output path, and babel transpilation, set up the absolute paths, and include devtool: 'source-map'
 ```
