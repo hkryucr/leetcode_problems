@@ -114,7 +114,7 @@ root to: 'static_pages#root'
 rails g model user
 rails g controller api/users
 ```
-- enter needed columns for user table and run migration(`rails db:migrate`)
+- enter needed columns for user table and run migration(`rails db:create` and `rails db:migrate`)
 ```
 class CreateUsers < ActiveRecord::Migration[5.2]
   def change
