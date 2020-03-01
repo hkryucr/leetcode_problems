@@ -110,7 +110,7 @@ root to: 'static_pages#root'
 
 ### Auth Backend
 - create user model and users controller
-`rails g model users`
+`rails g model user`
 `rails g controller api/users`
 
 
