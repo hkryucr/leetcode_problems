@@ -108,6 +108,15 @@ rails g controller StaticPages
 root to: 'static_pages#root'
 ```
 
+- update StaticPagesController
+```
+class StaticPagesController < ApplicationController
+  def root
+    
+  end
+end
+```
+
 ### Auth Backend
 - create users database and user model 
 ```
