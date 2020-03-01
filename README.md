@@ -15,7 +15,7 @@ gem 'bcrypt'
 gem 'jquery-rails'
 ``` 
 
-- run 'bundle install'
+- run `bundle install`
 
 - update application.js file
 ```
@@ -30,7 +30,7 @@ bundle.js
 bundle.js.map
 ```
 
-- create a package.json file by running 'npm init --yes' and create frontend folder including  actions, reducers, store, util, and components folders
+- create a package.json file by running `npm init --yes` and create frontend folder including  actions, reducers, store, util, and components folders
 
 - install frontend frameworks and libraries
 ```
