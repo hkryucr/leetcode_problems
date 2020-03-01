@@ -100,7 +100,7 @@ rails g controller StaticPages
 ```
 - inside /app/views/static_pages, create root.html.erb and make a root div
 ```
-<div id="root"></miv>
+<div id="root"></div>
 ```
 
 - update routes.rb file with root to static_pages#root
