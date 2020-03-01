@@ -36,7 +36,7 @@ bundle.js.map
 ```
 npm install --save webpack webpack-cli react react-dom react-router-dom redux react-redux @babel/core @babel/preset-react @babel/preset-env babel-loader lodash redux-logger redux-thunk
 ```
-- optionally, if you want to use css-loader, install as follows, which enables to use `import './another-stylesheet.css'`
+- optionally, if you want to use css-loader, install as follows, which enables to use `import './another-stylesheet.css'` inside js/jsx files.
 ```
 npm install --save-dev css-loader
 ```
