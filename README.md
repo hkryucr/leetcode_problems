@@ -221,6 +221,51 @@ class ApplicationController < ActionController::Base
 end
 
 ```
+- create sessions controller
+```
+rails g controller api/sessions
+```
+- update sessions controller
+```
+class Api::SessionsController < ApplicationController
+    def create
+        @user = User.find_by_credentials(
+            params[:user][:username],
+            params[:user][:password]
+        )
 
+        if @user
+            login(@user)
+            render '/api/users/show'
+        else
+            render json: ['Invalid username/password combination'], status: 401
+        end
+    end
 
+    def destroy
+        @user = current_user
+        if @user
+            logout
+            render "api/users/show"
+        else
+            render json: ['Nobody signed in'], status: 404
+        end
+    end 
+end
+```
+
+- update routes in routes.rb
+```
+Rails.application.routes.draw do
+  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  namespace :api, defaults: { format: :json } do 
+    resources :users, only: [:create]
+    resource :session, only: [:create, :destroy]
+  end
+
+  root to: 'static_pages#root'
+end
+
+```
 
