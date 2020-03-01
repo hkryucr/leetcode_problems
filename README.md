@@ -109,10 +109,9 @@ root to: 'static_pages#root'
 ```
 
 ### Auth Backend
-- create user model and users controller
+- create users database and user model 
 ```
 rails g model user
-rails g controller api/users
 ```
 - create users database and enter needed columns for user table and run migration
   - `rails db:create`
@@ -146,8 +145,8 @@ class User < ApplicationRecord
 
     def self.find_by_credentials(username, password)
         user = User.find_by(username: username)
-        # return nil if user.nil?
-        user && user.is_password?(password) ? user : nil
+        return nil if user.nil?
+        user.is_password?(password) ? user : nil
     end
 
     def password=(password)
@@ -165,10 +164,45 @@ class User < ApplicationRecord
         self.session_token
     end
 
+    private
     def ensure_session_token
-        self.session_token ||= SecureRandom.urlsafe_base64(64)
+        self.session_token ||= SecureRandom.urlsafe_base64(16)
     end
 end
 
 ```
+- create users controller
+```
+rails g controller api/users
+```
+- update users controller
+
+- update application controller
+
+```
+class ApplicationController < ActionController::Base
+    helper_method :current_user, :logged_in?
+
+    def logged_in?
+        !!current_user
+    end
+
+    def login(user)
+        @current_user = user
+        session[:session_token] = user.reset_session_token!
+    end
+
+    def logout
+        current_user.reset_session_token! 
+        session[:session_token] = nil
+    end
+
+    def current_user
+        @current_user ||= User.find_by(session_token: session[:session_token])
+    end
+end
+
+```
+
+
 
