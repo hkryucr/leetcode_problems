@@ -41,13 +41,15 @@ npm install --save webpack webpack-cli react react-dom react-router-dom redux re
 npm install --save-dev css-loader
 ```
 
+- create `frontend` folder and inside it, make `reducers, util, actions, store, components` folder, and `entry_file_name.jsx`.
+
 - create 'webpack.config.js' file and set up the entrypoint, output path, and babel transpilation, set up the absolute paths, and include devtool: 'source-map'
 ```
 const path = require("path");
 
 module.exports = {
   context: __dirname,
-  entry: "./frontend/bench_bnb.jsx",
+  entry: "./frontend/your_entry_file_name.jsx",
   output: {
     path: path.resolve(__dirname, "app", "assets", "javascripts"),
     filename: "bundle.js"
