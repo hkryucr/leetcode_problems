@@ -110,8 +110,25 @@ root to: 'static_pages#root'
 
 ### Auth Backend
 - create user model and users controller
-`rails g model user`
-`rails g controller api/users`
-
+```
+rails g model user
+rails g controller api/users
+```
+- enter needed columns for user table and run migration(`rails db:migrate`)
+```
+class CreateUsers < ActiveRecord::Migration[5.2]
+  def change
+    create_table :users do |t|
+      t.string :username, null: false
+      t.string :session_token, null: false
+      t.string :password_digest, null: false
+      
+      # .... additional columns.. 
+      
+      t.timestamps
+    end
+  end
+end
+```
 
 
