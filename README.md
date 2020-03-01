@@ -23,7 +23,7 @@ gem 'jquery-rails'
 //= require rails-ujs
 ```
 
-- run 'git init' and update .gitignore file
+- run 'git init' and create .gitignore file and write these codes to prevent unwanted pushes
 ```
 node_modules/
 bundle.js
