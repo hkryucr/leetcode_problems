@@ -324,6 +324,10 @@ Rails.application.routes.draw do
 
   root to: 'static_pages#root'
 end
+```
 
+- before working on jbuilder files, edit config/environment.rb
+```
+Jbuilder.key_format camelize: :lower
 ```
 
